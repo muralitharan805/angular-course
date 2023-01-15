@@ -1,14 +1,12 @@
 <div class="top-menu">
-
-    <img class="logo"
-         src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
-
+  <img
+    class="logo"
+    src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
+  />
 </div>
 
-
 <div class="courses">
-
-    <div class="course-card">
+  <!-- <div class="course-card">
 
         <div class="course-title">
             Angular Core Deep Dive
@@ -20,8 +18,12 @@
             A detailed walk-through of the most important part of Angular - the Core and Common modules.
         </div>
 
-    </div>
+    </div> -->
 
+  <course-card
+    *ngFor="let course of courses; index as i"
+    (courseSelected)="courseSelected($event)"
+    [course]="course"
+    [cardIndex]="i"
+  ></course-card>
 </div>
-
-
