@@ -1,20 +1,20 @@
 <div class="course-card" *ngIf="course">
   <div class="course-title">{{ cardIndex + 1 }}. {{ course?.description }}</div>
 
-  <img
-    width="300"
-    alt="Angular Logo"
-    [src]="course?.iconUrl"
-    *ngIf="isImageNotAvailable(); else noImage"
-  />
-
   <ng-template #noImage>
-    <p>no image</p>
+    <ng-container
+      *ngTemplateOutlet="noImagetemp; context: { des: course.description }"
+    >
+      <hr />
+      <hr />
+    </ng-container>
   </ng-template>
 
-  <div class="course-description">
-    {{ course?.longDescription }}
-  </div>
+  <ng-content
+    select="course-image"
+    *ngIf="course.iconUrl; else noImage"
+  ></ng-content>
+  <ng-content select=".course-description"></ng-content>
 
   <div [ngSwitch]="course.category" class="course-category">
     <div class="category" *ngSwitchCase="'BEGINNER'">BEGINNER</div>
